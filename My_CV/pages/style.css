@@ -11,6 +11,14 @@ body {
     align-items: center;
     justify-content: center;
     height:100vh;
+    color: aliceblue;
+    background-image: url("file:///C:/Users/AlesB/Desktop/MyWebHopefuly/My_CV/images/background.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+#text{
+    
 }
 
 h1{
@@ -18,9 +26,15 @@ h1{
     text-align: center;
 }
 
+h2{
+    font-size: 2rem;
+    text-align: center;
+}
+
 .MyNameIs{
     font-size: 5rem;
     text-align: center;
+    margin-top: 20%;
 }
 
 .fa-linkedin-square{
