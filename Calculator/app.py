@@ -1,12 +1,23 @@
 from flask import Flask, render_template, request
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///calculator.db'
+db = SQLAlchemy(app)
+
+class Result(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    expression = db.Column(db.String(255))
+    result = db.Column(db.Float)
+
+with app.app_context():
+    db.create_all()
 
 @app.route('/')
 def start():
     return render_template('calculator.html')
 
-@app.route('/calculate', methods=['POST'])
+@app.route('/calculate', methods=['GET', 'POST'])
 def calculate():
     num1 = float(request.form['num1'])
     num2 = float(request.form['num2'])
@@ -25,8 +36,17 @@ def calculate():
             result = num1 / num2
         else:
             return "Cannot divide by zero!"
+    
+    expression = f"{num1} {operation} {num2}"
+    result_entry = Result(expression=expression, result=result)
+    db.session.add(result_entry)
+    db.session.commit()
 
     return render_template('calculator.html', result=result)
+
+def history():
+    results = Result.query.all()
+    return render_template('calculator.html', results=results)    
 
 if __name__ == '__main__':
     app.run(debug=True)
