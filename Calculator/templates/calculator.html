@@ -26,13 +26,13 @@
     {% if result %}
         <p>Result: {{ result }}</p>
     {% endif %}
-    {% if results %}
-        <h2>Calculation History</h2>
-        <ul>
-            {% for result in results %}
-                <li>{{ result.expression }} = {{ result.result }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+
+    <h2>Result History</h2>
+    <ul>
+        {% for result in results %}
+            <li>{{ result.expression }} = {{ result.result }}</li>
+        {% endfor %}
+    </ul>
+
 </body>
 </html>

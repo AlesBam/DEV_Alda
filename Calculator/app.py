@@ -15,7 +15,8 @@ with app.app_context():
 
 @app.route('/')
 def start():
-    return render_template('calculator.html')
+    results = Result.query.all()
+    return render_template('calculator.html', results=results)
 
 @app.route('/calculate', methods=['GET', 'POST'])
 def calculate():
@@ -24,6 +25,7 @@ def calculate():
     operation = request.form['operation']
 
     result = 0
+    results = Result.query.all()
 
     if operation == 'add':
         result = num1 + num2
@@ -42,8 +44,9 @@ def calculate():
     db.session.add(result_entry)
     db.session.commit()
 
-    return render_template('calculator.html', result=result)
+    return render_template('calculator.html', result=result, results=results)
 
+@app.route('/history')
 def history():
     results = Result.query.all()
     return render_template('calculator.html', results=results)    
