@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aleš Bambas - Support Lead</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="home-page">
+    <div class="flip-container">
+        <div class="flipper">
+            <!-- Front side -->
+            <div class="front">
+                <h1 class="name">Aleš Bambas</h1>
+                <p class="title">Support Lead</p>
+            </div>
+            <!-- Back side -->
+            <div class="back">
+                <div class="summary-content">
+                    <h2>Professional Summary</h2>
+                    <p>Support Engineer with expertise in marketing and web technologies and proven experience in project management and team leadership.</p>
+                    <button class="enter-button">Enter Portfolio</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const flipContainer = document.querySelector('.flip-container');
+            const enterButton = document.querySelector('.enter-button');
+            let isFlipped = false;
+
+            // Flip on hover
+            flipContainer.addEventListener('mouseenter', function() {
+                if (!isFlipped) {
+                    this.classList.add('flipped');
+                }
+            });
+
+            flipContainer.addEventListener('mouseleave', function() {
+                if (!isFlipped) {
+                    this.classList.remove('flipped');
+                }
+            });
+
+            // Navigate to portfolio on button click
+            enterButton.addEventListener('click', function() {
+                window.location.href = 'portfolio.html';
+            });
+        });
+    </script>
+</body>
+</html> 

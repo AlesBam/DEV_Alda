@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aleš Bambas - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="portfolio.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        #geometricCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #000;
+        }
+    </style>
+</head>
+<body class="portfolio-page">
+    <canvas id="geometricCanvas"></canvas>
+    <div class="top-controls">
+        <div class="theme-switcher">
+            <button class="theme-btn red active" data-theme="red">
+                <i class="fas fa-circle"></i>
+            </button>
+            <button class="theme-btn blue" data-theme="blue">
+                <i class="fas fa-circle"></i>
+            </button>
+            <button class="theme-btn green" data-theme="green">
+                <i class="fas fa-circle"></i>
+            </button>
+        </div>
+        <a href="index.html" class="name-link">
+            <h1 class="name" data-text="Aleš Bambas">Aleš Bambas</h1>
+        </a>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/aleš-bambas-2610b9216/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/AlesBam" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="mailto:alesbambas@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+
+    <div class="scene">
+        <div class="cube">
+            <div class="cube__face cube__face--front" data-section="about">
+                <i class="fas fa-user"></i>
+                <span>About Me</span>
+            </div>
+            <div class="cube__face cube__face--back" data-section="education">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Education</span>
+            </div>
+            <div class="cube__face cube__face--right" data-section="courses">
+                <i class="fas fa-book"></i>
+                <span>Courses</span>
+            </div>
+            <div class="cube__face cube__face--left" data-section="skills">
+                <i class="fas fa-tools"></i>
+                <span>Skills</span>
+            </div>
+            <div class="cube__face cube__face--top" data-section="experience">
+                <i class="fas fa-briefcase"></i>
+                <span>Experience</span>
+            </div>
+            <div class="cube__face cube__face--bottom">
+                <i class="fas fa-face-grin-tongue"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for section content -->
+    <div class="modal" id="sectionModal">
+        <div class="modal-content">
+            <div class="modal-body">
+                <!-- Section content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden sections containing the content -->
+    <div class="hidden-sections" style="display: none;">
+        <section id="about" class="portfolio-section">
+            <h2><i class="fas fa-user"></i> About Me</h2>
+            <div class="section-content">
+                <p>Support Engineer with expertise in marketing and web technologies and proven experience in project management and team leadership.</p>
+                <div class="contact-info">
+                    <p><i class="fas fa-phone"></i> +420 604 890 999</p>
+                    <p><i class="fas fa-envelope"></i> alesbambas@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Praha, Příbram</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="portfolio-section">
+            <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+            <div class="section-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>GYMNÁZIUM LEGIONÁŘŮ Příbram</h3>
+                        <p class="period">Graduated 05/2019</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="courses" class="portfolio-section">
+            <h2><i class="fas fa-book"></i> Courses</h2>
+            <div class="section-content">
+                <div class="courses-grid">
+                    <div class="course-card">
+                        <h3>EFPA Europe</h3>
+                        <p class="provider">Kat. I - Životní pojištění</p>
+                    </div>
+                    <div class="course-card">
+                        <h3>Effective communication</h3>
+                        <p class="provider">Hubbard College of Administration Brno</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="portfolio-section">
+            <h2><i class="fas fa-tools"></i> Skills</h2>
+            <div class="section-content">
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Frontend & Technical Skills</h3>
+                        <ul>
+                            <li>React</li>
+                            <li>jQuery</li>
+                            <li>JavaScript (JS)</li>
+                            <li>Google Tag Manager (GTM)</li>
+                            <li>API Integration & Troubleshooting</li>
+                            <li>QA & Testing</li>
+                            <li>Technical Support & Troubleshooting</li>
+                            <li>Process Optimization & Automation</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Soft Skills & Management</h3>
+                        <ul>
+                            <li>Project Coordination & Task Allocation</li>
+                            <li>Leadership & Team Management</li>
+                            <li>Training & Mentoring</li>
+                            <li>Stakeholder Communication (Clients, Developers, Project Managers)</li>
+                            <li>Technical Documentation & Knowledge Sharing</li>
+                            <li>Time Management & Prioritization</li>
+                            <li>Customer Communication</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="portfolio-section">
+            <h2><i class="fas fa-briefcase"></i> Experience</h2>
+            <div class="section-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>Technical Support Team Leader</h3>
+                        <p class="company">VIVnetworks</p>
+                        <p class="period">07/2023 – Present</p>
+                        <ul>
+                            <li>L2 support solutions</li>
+                            <li>Training of junior colleagues</li>
+                            <li>Coordination of the team and allocation of tasks according to capacity and priorities</li>
+                            <li>Responsible for onboarding process of new clients - reporting to the Technical Director</li>
+                            <li>Client Integration Engineer & Head of Pre-Launch team</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Technical Support Specialist</h3>
+                        <p class="company">VIVnetworks</p>
+                        <p class="period">03/2021 - 06/2023</p>
+                        <ul>
+                            <li>Provide technical support for clients and colleagues in marketing and sales</li>
+                            <li>Participate in client onboarding processes</li>
+                            <li>Implementation and testing of tracking codes in custom web applications, e-commerce platforms or using Google Tag Manager</li>
+                            <li>Communicate with company owners, project managers, and developers to deliver technical solutions</li>
+                            <li>Product feed QA</li>
+                            <li>Address and resolve customer issues via phone, email, and meetings for clients, advertisers, and companies</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Affiliate Manager</h3>
+                        <p class="company">VIVnetworks</p>
+                        <p class="period">02/2020 – 03/2021</p>
+                        <ul>
+                            <li>Account management in affiliate marketing</li>
+                            <li>Development of client affiliate programs</li>
+                            <li>Client training in the platform</li>
+                            <li>Working in Google Cloud environment</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Other Part-time Experiences</h3>
+                        <ul>
+                            <li>Warehouseman at Tesco a.s.</li>
+                            <li>Assistant to the financial advisor at Partners a.s.</li>
+                            <li>Driver for the Cargo Security Company (TCSC)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Geometric background setup
+            const canvas = document.getElementById('geometricCanvas');
+            const ctx = canvas.getContext('2d');
+            let mouseX = 0;
+            let mouseY = 0;
+            let points = [];
+            const numPoints = 35;
+            const connectionDistance = 180;
+            let animationFrameId = null;
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+
+            function createPoints() {
+                points = [];
+                for (let i = 0; i < numPoints; i++) {
+                    points.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        speedX: (Math.random() - 0.5) * 0.7,
+                        speedY: (Math.random() - 0.5) * 0.7,
+                        size: Math.random() * 2.5 + 1.5
+                    });
+                }
+            }
+
+            function drawGeometric() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+                ctx.lineWidth = 0.8;
+
+                // Update and draw points
+                points.forEach(point => {
+                    point.x += point.speedX;
+                    point.y += point.speedY;
+
+                    // Bounce off edges
+                    if (point.x < 0 || point.x > canvas.width) point.speedX *= -1;
+                    if (point.y < 0 || point.y > canvas.height) point.speedY *= -1;
+
+                    // Draw connections between points
+                    points.forEach(otherPoint => {
+                        const distance = Math.hypot(point.x - otherPoint.x, point.y - otherPoint.y);
+                        if (distance < connectionDistance) {
+                            const opacity = 1 - (distance / connectionDistance);
+                            ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.25})`;
+                            ctx.beginPath();
+                            ctx.moveTo(point.x, point.y);
+                            ctx.lineTo(otherPoint.x, otherPoint.y);
+                            ctx.stroke();
+                        }
+                    });
+
+                    // Draw connections to mouse if close enough
+                    const mouseDistance = Math.hypot(point.x - mouseX, point.y - mouseY);
+                    if (mouseDistance < connectionDistance * 1.2) {
+                        const opacity = 1 - (mouseDistance / (connectionDistance * 1.2));
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.4})`;
+                        ctx.beginPath();
+                        ctx.moveTo(point.x, point.y);
+                        ctx.lineTo(mouseX, mouseY);
+                        ctx.stroke();
+                    }
+
+                    // Draw point with its unique size
+                    ctx.beginPath();
+                    ctx.arc(point.x, point.y, point.size, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+                    ctx.fill();
+                });
+
+                animationFrameId = requestAnimationFrame(drawGeometric);
+            }
+
+            // Initialize canvas
+            resizeCanvas();
+            createPoints();
+            drawGeometric();
+
+            // Event listeners
+            window.addEventListener('resize', () => {
+                resizeCanvas();
+                createPoints();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) {  // Only update mouse position when not dragging the cube
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                }
+            });
+
+            // Existing cube rotation code
+            let cube = document.querySelector('.cube');
+            let rotationX = 0;
+            let rotationY = 0;
+            let isDragging = false;
+            let previousX, previousY;
+            let cubeAnimationFrameId = null;
+
+            function updateCubeRotation() {
+                if (isDragging) {
+                    cube.style.transform = `rotateY(${rotationY}deg) rotateX(${-rotationX}deg)`;
+                    cubeAnimationFrameId = requestAnimationFrame(updateCubeRotation);
+                }
+            }
+
+            // Cube rotation
+            document.addEventListener('mousedown', e => {
+                // Don't start rotation if clicking on a cube face
+                if (e.target.closest('.cube__face')) return;
+                
+                isDragging = true;
+                previousX = e.clientX;
+                previousY = e.clientY;
+                
+                if (cubeAnimationFrameId) {
+                    cancelAnimationFrame(cubeAnimationFrameId);
+                }
+                cubeAnimationFrameId = requestAnimationFrame(updateCubeRotation);
+            });
+
+            document.addEventListener('mousemove', e => {
+                if (isDragging) {
+                    // Calculate the difference in position since last move
+                    const deltaX = e.clientX - previousX;
+                    const deltaY = e.clientY - previousY;
+                    
+                    // Update the rotation based on the movement
+                    rotationY += deltaX * 0.15;
+                    rotationX += deltaY * 0.15;
+                    
+                    // Store current position for next move
+                    previousX = e.clientX;
+                    previousY = e.clientY;
+                }
+            });
+
+            function stopDragging() {
+                isDragging = false;
+                if (cubeAnimationFrameId) {
+                    cancelAnimationFrame(cubeAnimationFrameId);
+                    cubeAnimationFrameId = null;
+                }
+            }
+
+            document.addEventListener('mouseup', stopDragging);
+            document.addEventListener('mouseleave', stopDragging);
+
+            // Theme switcher functionality
+            const themeButtons = document.querySelectorAll('.theme-btn');
+            const root = document.documentElement;
+
+            const themes = {
+                red: {
+                    '--accent-color': '#ff4444',
+                    '--secondary-color': '#ff4444'
+                },
+                blue: {
+                    '--accent-color': '#00b4d8',
+                    '--secondary-color': '#3498db'
+                },
+                green: {
+                    '--accent-color': '#00ff9d',
+                    '--secondary-color': '#00ff9d'
+                }
+            };
+
+            // Modal functionality
+            const modal = document.getElementById('sectionModal');
+            const modalBody = document.querySelector('.modal-body');
+
+            document.querySelectorAll('.cube__face').forEach(face => {
+                face.addEventListener('click', () => {
+                    const sectionId = face.dataset.section;
+                    if (sectionId) {
+                        const content = document.querySelector(`#${sectionId}`).cloneNode(true);
+                        modalBody.innerHTML = '';
+                        modalBody.appendChild(content);
+                        modal.style.display = 'block';
+                        content.classList.add('active');
+                    }
+                });
+            });
+
+            window.addEventListener('click', e => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            // Theme switcher
+            themeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    themeButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    const theme = themes[button.dataset.theme];
+                    Object.entries(theme).forEach(([property, value]) => {
+                        root.style.setProperty(property, value);
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
